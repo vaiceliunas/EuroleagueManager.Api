@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EuroleagueManager.Api", "EuroleagueManager.Api\EuroleagueManager.Api.csproj", "{166D73CC-0951-40C7-B065-E9BEA6BEE9DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166D73CC-0951-40C7-B065-E9BEA6BEE9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166D73CC-0951-40C7-B065-E9BEA6BEE9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166D73CC-0951-40C7-B065-E9BEA6BEE9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166D73CC-0951-40C7-B065-E9BEA6BEE9DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {985EC33B-36BE-40ED-9A4F-BA56B3010929}
+	EndGlobalSection
+EndGlobal
