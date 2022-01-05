@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EuroleagueManager.Api.Models;
+using EuroleagueManager.Api.Repositories.Interfaces;
 
 namespace EuroleagueManager.Api.Controllers
 {
@@ -17,23 +19,22 @@ namespace EuroleagueManager.Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        public readonly ITeamRepository _teamRepository;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ITeamRepository teamRepository)
         {
             _logger = logger;
+            _teamRepository = teamRepository;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<Team> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+
+            var data =  _teamRepository.GetAllTeams();
+
+            return data;
         }
     }
 }
