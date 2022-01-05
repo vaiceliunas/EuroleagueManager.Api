@@ -17,8 +17,7 @@ namespace EuroleagueManager.Api.Repositories
         {
             var mongoClient = new MongoClient(euroleagueMongoDbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(euroleagueMongoDbSettings.Value.DatabaseName);
-            _teamCollection = mongoDatabase.GetCollection<Team>(euroleagueMongoDbSettings.Value.Collection);
-
+            _teamCollection = mongoDatabase.GetCollection<Team>(euroleagueMongoDbSettings.Value.TeamsCollection);
         }
         public Team InsertTeam(Team team)
         {
@@ -27,6 +26,7 @@ namespace EuroleagueManager.Api.Repositories
 
         public Team AddPlayerToTeam(ObjectId teamId, Player player)
         {
+            //_teamCollection.Find(t => t.Id == teamId).
             throw new NotImplementedException();
         }
 
@@ -37,7 +37,7 @@ namespace EuroleagueManager.Api.Repositories
 
         public List<Team> GetAllTeams()
         {
-            return _teamCollection.Find(_ => true).ToList();
+            return _teamCollection.AsQueryable().ToList();
         }
     }
 }

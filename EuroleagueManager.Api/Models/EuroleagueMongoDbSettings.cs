@@ -11,6 +11,8 @@ namespace EuroleagueManager.Api.Models
 
         public string DatabaseName { get; set; } = null!;
 
-        public string Collection { get; set; } = null!;
+        public string TeamsCollection { get; set; } = null!;
+
+        public string PlayersCollection { get; set; } = null!;
     }
 }

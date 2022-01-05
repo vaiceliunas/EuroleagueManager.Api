@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using EuroleagueManager.Api.Models;
 using EuroleagueManager.Api.Repositories;
 using EuroleagueManager.Api.Repositories.Interfaces;
+using EuroleagueManager.Api.Services;
+using EuroleagueManager.Api.Services.Interfaces;
 
 namespace EuroleagueManager.Api
 {
@@ -36,6 +38,9 @@ namespace EuroleagueManager.Api
             });
 
             services.Configure<EuroleagueMongoDbSettings>(Configuration.GetSection("EuroleagueMongoDb"));
+
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<ITeamRepository, TeamRepository>();
         }
 

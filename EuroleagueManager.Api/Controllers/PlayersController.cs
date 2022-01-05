@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EuroleagueManager.Api.Models;
+using EuroleagueManager.Api.Services.Interfaces;
 
 namespace EuroleagueManager.Api.Controllers
 {
@@ -11,5 +13,19 @@ namespace EuroleagueManager.Api.Controllers
     [ApiController]
     public class PlayersController : ControllerBase
     {
+        private readonly IPlayerService _playerService;
+
+        public PlayersController(IPlayerService playersService)
+        {
+            _playerService = playersService;
+        }
+
+        [HttpPost]
+        public IActionResult Post()
+        {
+            var result = _playerService.GeneratePlayer();
+
+            return Ok(result);
+        }
     }
 }
