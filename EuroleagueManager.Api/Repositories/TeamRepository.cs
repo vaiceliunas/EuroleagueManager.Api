@@ -21,13 +21,14 @@ namespace EuroleagueManager.Api.Repositories
         }
         public Team InsertTeam(Team team)
         {
-            throw new NotImplementedException();
+            _teamCollection.InsertOne(team);
+            return team;
         }
 
         public Team AddPlayerToTeam(ObjectId teamId, Player player)
         {
-            //_teamCollection.Find(t => t.Id == teamId).
-            throw new NotImplementedException();
+            _teamCollection.UpdateOne(t => t.Name == "Olympiacos", "fff");
+            return new Team();
         }
 
         public Team RemovePlayerFromTeam(ObjectId teamId, ObjectId playerId)

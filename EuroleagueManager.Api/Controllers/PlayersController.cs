@@ -21,7 +21,7 @@ namespace EuroleagueManager.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Generate()
         {
             var result = _playerService.GeneratePlayer();
 

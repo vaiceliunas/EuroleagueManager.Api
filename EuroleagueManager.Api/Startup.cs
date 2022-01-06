@@ -40,8 +40,9 @@ namespace EuroleagueManager.Api
             services.Configure<EuroleagueMongoDbSettings>(Configuration.GetSection("EuroleagueMongoDb"));
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
-            services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ITeamService, TeamService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
