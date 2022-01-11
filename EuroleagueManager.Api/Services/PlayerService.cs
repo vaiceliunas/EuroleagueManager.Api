@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using EuroleagueManager.Api.Models;
@@ -35,6 +36,20 @@ namespace EuroleagueManager.Api.Services
             var res = _playerRepository.AddPlayer(newPlayer);
 
             return res;
+        }
+
+        public Player GetPlayer(string id)
+        {
+            var result = _playerRepository.GetPlayer(new ObjectId(id));
+
+            return result;
+        }
+
+        public List<Player> GetPlayers()
+        {
+            var result = _playerRepository.GetPlayers();
+
+            return result;
         }
     }
 }
