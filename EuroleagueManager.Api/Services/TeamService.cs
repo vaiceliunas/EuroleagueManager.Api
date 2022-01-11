@@ -36,6 +36,20 @@ namespace EuroleagueManager.Api.Services
             return res;
         }
 
+        public Team GetTeam(string teamId)
+        {
+            var result = _teamRepository.GetTeam(new ObjectId(teamId));
+
+            return result;
+        }
+
+        public List<Team> GetTeams()
+        {
+            var result = _teamRepository.GetTeams();
+
+            return result;
+        }
+
         public Team AddPlayerToTeam(string teamId, string playerId)
         {
 

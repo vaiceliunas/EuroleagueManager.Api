@@ -14,5 +14,6 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
         public Team AddPlayerToTeam(ObjectId teamId, PlayerInsideTeamProjection player);
         public Team RemovePlayerFromTeam(ObjectId teamId, ObjectId playerId);
         public List<Team> GetTeams();
+        public Team GetTeam(ObjectId teamId);
     }
 }

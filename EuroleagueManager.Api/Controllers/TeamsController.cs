@@ -21,11 +21,19 @@ namespace EuroleagueManager.Api.Controllers
         }
 
         [HttpGet("{teamId}")]
-        public IActionResult Get(string teamId)
+        public IActionResult GetAll(string teamId)
         {
-            //var res = _teamsService().;
+            var res = _teamsService.GetTeam(teamId);
 
-            return Ok();
+            return Ok(res);
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var res = _teamsService.GetTeams();
+
+            return Ok(res);
         }
 
         [HttpPost("{teamId}/addPlayer/{playerId}")]

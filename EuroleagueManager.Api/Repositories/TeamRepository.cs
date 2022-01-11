@@ -49,5 +49,10 @@ namespace EuroleagueManager.Api.Repositories
         {
             return _teamCollection.AsQueryable().ToList();
         }
+
+        public Team GetTeam(ObjectId teamId)
+        {
+            return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
+        }
     }
 }
