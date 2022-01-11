@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EuroleagueManager.Api.Models.Projections;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -23,9 +24,9 @@ namespace EuroleagueManager.Api.Models
         public string Country { get; set; }
         [BsonIgnoreIfNull]
         [BsonElement("players")]
-        public List<Player> Players { get; set; }
+        public List<PlayerInsideTeamProjection> Players { get; set; }
         [BsonIgnoreIfNull]
         [BsonElement("coaches")]
-        public List<Coach> Coaches { get; set; }
+        public List<CoachInsideTeamProjection> Coaches { get; set; }
     }
 }

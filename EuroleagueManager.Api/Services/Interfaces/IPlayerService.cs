@@ -9,5 +9,7 @@ namespace EuroleagueManager.Api.Services.Interfaces
     public interface IPlayerService
     {
         public Player GeneratePlayer();
+        public Player GetPlayer(string id);
+        public List<Player> GetPlayers();
     }
 }

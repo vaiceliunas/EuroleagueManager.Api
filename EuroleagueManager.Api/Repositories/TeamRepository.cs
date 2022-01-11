@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EuroleagueManager.Api.Models;
+using EuroleagueManager.Api.Models.Projections;
 using EuroleagueManager.Api.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
@@ -25,18 +26,26 @@ namespace EuroleagueManager.Api.Repositories
             return team;
         }
 
-        public Team AddPlayerToTeam(ObjectId teamId, Player player)
+        public Team AddPlayerToTeam(ObjectId teamId,  PlayerInsideTeamProjection player)
         {
-            _teamCollection.UpdateOne(t => t.Name == "Olympiacos", "fff");
-            return new Team();
+            var update = Builders<Team>.Update.Push(t => t.Players, player);
+
+            var result = _teamCollection.UpdateOne(t => t.Id == teamId, update);
+            return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
         }
 
         public Team RemovePlayerFromTeam(ObjectId teamId, ObjectId playerId)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Team>.Filter.Where(t => t.Id == teamId);
+            var pull = Builders<Team>.Update.PullFilter(p => p.Players,
+                Builders<PlayerInsideTeamProjection>.Filter.Where(tp => tp.Id == playerId));
+
+            _teamCollection.UpdateOne(filter, pull);
+
+            return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
         }
 
-        public List<Team> GetAllTeams()
+        public List<Team> GetTeams()
         {
             return _teamCollection.AsQueryable().ToList();
         }

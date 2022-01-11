@@ -20,12 +20,38 @@ namespace EuroleagueManager.Api.Controllers
             _teamsService = teamsService;
         }
 
-        [HttpPost]
-        public IActionResult Get()
+        [HttpGet("{teamId}")]
+        public IActionResult Get(string teamId)
         {
-            var res = _teamsService.GenerateTeam();
+            //var res = _teamsService().;
 
-            return Ok(res);
+            return Ok();
+        }
+
+        [HttpPost("{teamId}/addPlayer/{playerId}")]
+        public IActionResult AddPlayer(string teamId, string playerId)
+        {
+            var result = _teamsService.AddPlayerToTeam(teamId, playerId);
+
+
+            return Ok(result);
+        }
+
+        [HttpPost("{teamId}/removePlayer/{playerId}")]
+        public IActionResult RemovePlayer(string teamId, string playerId)
+        {
+            var result = _teamsService.RemovePlayerFromTeam(teamId, playerId);
+
+
+            return Ok(result);
+        }
+
+        [HttpPost("generateTeam")]
+        public IActionResult GenerateTeam()
+        {
+            var result = _teamsService.GenerateTeam();
+
+            return Ok(result);
         }
     }
 }

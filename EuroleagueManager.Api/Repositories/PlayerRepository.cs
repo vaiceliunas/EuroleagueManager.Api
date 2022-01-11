@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EuroleagueManager.Api.Models;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace EuroleagueManager.Api.Repositories.Interfaces
@@ -32,6 +33,20 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
         public Player DeletePlayer(Player player)
         {
             throw new NotImplementedException();
+        }
+
+        public Player GetPlayer(ObjectId objectId)
+        {
+            var result = _playerCollection.Find<Player>(t => t.Id == objectId).FirstOrDefault();
+
+            return result;
+        }
+
+        public List<Player> GetPlayers()
+        {
+            var result = _playerCollection.Find(_ => true).ToList();
+
+            return result;
         }
     }
 }
