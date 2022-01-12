@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EuroleagueManager.Api.Models;
+using EuroleagueManager.Api.Models.Parameters;
 using EuroleagueManager.Api.Repositories;
 using EuroleagueManager.Api.Repositories.Interfaces;
 using EuroleagueManager.Api.Services;
@@ -38,6 +39,7 @@ namespace EuroleagueManager.Api
             });
 
             services.Configure<EuroleagueMongoDbSettings>(Configuration.GetSection("EuroleagueMongoDb"));
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
