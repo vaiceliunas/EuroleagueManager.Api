@@ -7,6 +7,7 @@ using EuroleagueManager.Api.Models.Projections;
 using EuroleagueManager.Api.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
 namespace EuroleagueManager.Api.Repositories
@@ -67,6 +68,17 @@ namespace EuroleagueManager.Api.Repositories
             var result = _teamCollection.FindOneAndUpdate(filter, update, new FindOneAndUpdateOptions<Team, Team>(){ReturnDocument = ReturnDocument.After});
 
             return result;
+        }
+
+        public void UpdatePlayerFieldsInsideTeam(ObjectId playerId, PlayerInsideTeamProjection player)
+        {
+
+            var updateFilter = Builders<Team>.Filter.Where(t => t.Players.Any(j => j.Id == playerId));
+            var update = Builders<Team>.Update
+                .Set(t => t.Players[-1].Name, player.Name)
+                .Set(t => t.Players[-1].Surname, player.Surname);
+
+            var result = _teamCollection.UpdateMany(updateFilter, update);
         }
     }
 }

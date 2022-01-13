@@ -11,5 +11,6 @@ namespace EuroleagueManager.Api.Services.Interfaces
         public Player GeneratePlayer();
         public Player GetPlayer(string id);
         public List<Player> GetPlayers();
+        public Player UpdatePlayerFields(string playerId, Player player);
     }
 }

@@ -17,5 +17,6 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
         public Team GetTeam(ObjectId teamId);
 
         public Team UpdateTeamFields(ObjectId teamId, Team teamFields);
+        public void UpdatePlayerFieldsInsideTeam(ObjectId playerId, PlayerInsideTeamProjection player);
     }
 }

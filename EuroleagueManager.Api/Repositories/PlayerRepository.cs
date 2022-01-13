@@ -48,5 +48,22 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
 
             return result;
         }
+
+        public Player UpdatePlayer(ObjectId playerId, Player player)
+        {
+            {
+                var filter = Builders<Player>.Filter.Where(t => t.Id == playerId);
+                var update = Builders<Player>.Update
+                    .Set(t => t.Name, player.Name)
+                    .Set(t => t.Surname, player.Surname)
+                    .Set(t => t.HeightInCm, player.HeightInCm)
+                    .Set(t => t.WeightInKg, player.WeightInKg);
+
+                var result = _playerCollection.FindOneAndUpdate(filter, update,
+                    new FindOneAndUpdateOptions<Player, Player>() {ReturnDocument = ReturnDocument.After});
+
+                return result;
+            }
+        }
     }
 }

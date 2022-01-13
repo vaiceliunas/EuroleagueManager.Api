@@ -10,9 +10,9 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
     public interface IPlayerRepository
     {
         public Player AddPlayer(Player player);
-        public Player UpdatePlayer(Player player);
         public Player DeletePlayer(Player player);
         public Player GetPlayer(ObjectId objectId);
         public List<Player> GetPlayers();
+        public Player UpdatePlayer(ObjectId playerId, Player player);
     }
 }
