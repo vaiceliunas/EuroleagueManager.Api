@@ -28,10 +28,11 @@ namespace EuroleagueManager.Api.Repositories
 
         public Team AddPlayerToTeam(ObjectId teamId,  PlayerInsideTeamProjection player)
         {
+            var filter = Builders<Team>.Filter.Where(t => t.Id == teamId);
             var update = Builders<Team>.Update.Push(t => t.Players, player);
 
-            var result = _teamCollection.UpdateOne(t => t.Id == teamId, update);
-            return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
+            var result = _teamCollection.FindOneAndUpdate(filter, update, new FindOneAndUpdateOptions<Team, Team>(){ReturnDocument = ReturnDocument.After});
+            return result;
         }
 
         public Team RemovePlayerFromTeam(ObjectId teamId, ObjectId playerId)
@@ -40,9 +41,9 @@ namespace EuroleagueManager.Api.Repositories
             var pull = Builders<Team>.Update.PullFilter(p => p.Players,
                 Builders<PlayerInsideTeamProjection>.Filter.Where(tp => tp.Id == playerId));
 
-            _teamCollection.UpdateOne(filter, pull);
+            var result = _teamCollection.FindOneAndUpdate(filter, pull, new FindOneAndUpdateOptions<Team, Team>() { ReturnDocument = ReturnDocument.After });
 
-            return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
+            return result;
         }
 
         public List<Team> GetTeams()
@@ -53,6 +54,19 @@ namespace EuroleagueManager.Api.Repositories
         public Team GetTeam(ObjectId teamId)
         {
             return _teamCollection.Find(t => t.Id == teamId).FirstOrDefault();
+        }
+
+        public Team UpdateTeamFields(ObjectId teamId, Team teamFields)
+        {
+            var filter = Builders<Team>.Filter.Where(t => t.Id == teamId);
+            var update = Builders<Team>.Update
+                .Set(t => t.Name, teamFields.Name)
+                .Set(t => t.City, teamFields.City)
+                .Set(t => t.Country, teamFields.Country);
+
+            var result = _teamCollection.FindOneAndUpdate(filter, update, new FindOneAndUpdateOptions<Team, Team>(){ReturnDocument = ReturnDocument.After});
+
+            return result;
         }
     }
 }

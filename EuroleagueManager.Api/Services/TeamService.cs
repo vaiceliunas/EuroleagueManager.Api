@@ -71,5 +71,14 @@ namespace EuroleagueManager.Api.Services
 
             return result;
         }
+
+        public Team UpdateTeamFields(string teamId, Team teamFields)
+        {
+            var teamObjId = new ObjectId(teamId);
+
+            var result = _teamRepository.UpdateTeamFields(teamObjId, teamFields);
+
+            return result;
+        }
     }
 }

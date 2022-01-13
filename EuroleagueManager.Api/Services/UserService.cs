@@ -18,7 +18,7 @@ namespace EuroleagueManager.Api.Services
 
         private List<User> _users = new List<User>
         {
-            new User { Id = 1, FirstName = "Angular", LastName = "Client", Username = "angularClient", Password = "123456789" }
+            new User { Id = 1, FirstName = "Angular", LastName = "Client", Username = "string", Password = "string" }
         };
 
         private readonly JwtSettings _jwtSettings;

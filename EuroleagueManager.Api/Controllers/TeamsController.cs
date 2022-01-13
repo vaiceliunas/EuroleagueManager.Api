@@ -40,6 +40,15 @@ namespace EuroleagueManager.Api.Controllers
         }
 
         [Authorize]
+        [HttpPut("{teamId}")]
+        public IActionResult Put(string teamId, Team team)
+        {
+            var res = _teamsService.UpdateTeamFields(teamId, team);
+
+            return Ok(res);
+        }
+
+        [Authorize]
         [HttpPost("{teamId}/addPlayer/{playerId}")]
         public IActionResult AddPlayer(string teamId, string playerId)
         {

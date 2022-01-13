@@ -14,5 +14,7 @@ namespace EuroleagueManager.Api.Services.Interfaces
         public List<Team> GetTeams();
         public Team AddPlayerToTeam(string teamId, string playerId);
         public Team RemovePlayerFromTeam(string teamId, string playerId);
+
+        public Team UpdateTeamFields(string teamId, Team teamFields);
     }
 }

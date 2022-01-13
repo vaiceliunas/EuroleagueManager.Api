@@ -15,5 +15,7 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
         public Team RemovePlayerFromTeam(ObjectId teamId, ObjectId playerId);
         public List<Team> GetTeams();
         public Team GetTeam(ObjectId teamId);
+
+        public Team UpdateTeamFields(ObjectId teamId, Team teamFields);
     }
 }
