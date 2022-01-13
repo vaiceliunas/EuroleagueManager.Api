@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EuroleagueManager.Api.Common.Helpers;
 using EuroleagueManager.Api.Models;
 using EuroleagueManager.Api.Services.Interfaces;
 
@@ -20,6 +21,7 @@ namespace EuroleagueManager.Api.Controllers
             _teamsService = teamsService;
         }
 
+        [Authorize]
         [HttpGet("{teamId}")]
         public IActionResult GetAll(string teamId)
         {
@@ -28,6 +30,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(res);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,6 +39,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(res);
         }
 
+        [Authorize]
         [HttpPost("{teamId}/addPlayer/{playerId}")]
         public IActionResult AddPlayer(string teamId, string playerId)
         {
@@ -45,6 +49,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("{teamId}/removePlayer/{playerId}")]
         public IActionResult RemovePlayer(string teamId, string playerId)
         {
@@ -54,6 +59,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("generateTeam")]
         public IActionResult GenerateTeam()
         {

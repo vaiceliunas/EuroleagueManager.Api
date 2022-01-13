@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EuroleagueManager.Api.Common.Helpers;
 using EuroleagueManager.Api.Models;
 using EuroleagueManager.Api.Services.Interfaces;
 using MongoDB.Bson;
@@ -21,6 +22,7 @@ namespace EuroleagueManager.Api.Controllers
             _playerService = playersService;
         }
 
+        [Authorize]
         [HttpGet("{playerId}")]
         public IActionResult GetPlayer(string playerId)
         {
@@ -29,6 +31,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult GetPlayers()
         {
@@ -37,6 +40,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("generatePlayer")]
         public IActionResult Generate()
         {
