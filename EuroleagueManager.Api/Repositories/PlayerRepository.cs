@@ -18,6 +18,7 @@ namespace EuroleagueManager.Api.Repositories.Interfaces
             var mongoDatabase = mongoClient.GetDatabase(euroleagueMongoDbSettings.Value.DatabaseName);
             _playerCollection = mongoDatabase.GetCollection<Player>(euroleagueMongoDbSettings.Value.PlayersCollection);
         }
+
         public Player AddPlayer(Player player)
         {
             _playerCollection.InsertOne(player);

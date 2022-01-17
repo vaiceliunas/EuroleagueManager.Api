@@ -335,3 +335,4 @@ ASALocalRun/
 EuroleagueManager.Api/appsettings.json
 EuroleagueManager.Api/appsettings.json
 EuroleagueManager.Api/appsettings.json
+EuroleagueManager.Api.Tests/TestAppSettings.cs

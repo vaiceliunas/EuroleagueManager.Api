@@ -73,7 +73,7 @@ namespace EuroleagueManager.Api.Repositories
         public void UpdatePlayerFieldsInsideTeam(ObjectId playerId, PlayerInsideTeamProjection player)
         {
 
-            var updateFilter = Builders<Team>.Filter.Where(t => t.Players.Any(j => j.Id == playerId));
+            var updateFilter = Builders<Team>.Filter.ElemMatch(t => t.Players, p => p.Id == playerId);
             var update = Builders<Team>.Update
                 .Set(t => t.Players[-1].Name, player.Name)
                 .Set(t => t.Players[-1].Surname, player.Surname);
