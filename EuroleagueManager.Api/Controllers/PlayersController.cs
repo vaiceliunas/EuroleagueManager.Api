@@ -31,7 +31,7 @@ namespace EuroleagueManager.Api.Controllers
             return Ok(result);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPut("{playerId}")]
         public IActionResult PutPlayer(string playerId, Player player)
         {

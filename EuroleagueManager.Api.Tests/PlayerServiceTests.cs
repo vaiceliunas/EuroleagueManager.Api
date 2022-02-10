@@ -1,5 +1,6 @@
 using EuroleagueManager.Api.Models;
 using System;
+using EuroleagueManager.Api.Models.Factories;
 using EuroleagueManager.Api.Repositories;
 using EuroleagueManager.Api.Repositories.Interfaces;
 using EuroleagueManager.Api.Services;
@@ -53,15 +54,13 @@ namespace EuroleagueManager.Api.Tests
             var newWeightInKg = 100;
 
             var player = _playerService.GeneratePlayer();
-            var updatePlayer = new Player()
-            {
-                Id = player.Id,
-                BirthDate = player.BirthDate,
-                Name = newName,
-                Surname = newSurname,
-                HeightInCm = newHeightInCm,
-                WeightInKg = newWeightInKg
-            };
+            var updatePlayer = PlayerFactory.InitializePlayer(
+                player.Id, 
+                player.BirthDate,
+                newName,
+                newSurname,
+                newHeightInCm,
+                newWeightInKg);
 
             var updatedPlayer = _playerService.UpdatePlayerFields(player.Id.ToString(), updatePlayer);
             var getUpdatedPlayer = _playerService.GetPlayer(player.Id.ToString());

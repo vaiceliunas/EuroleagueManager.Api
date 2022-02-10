@@ -24,18 +24,7 @@ namespace EuroleagueManager.Api.Services
         }
         public Player GeneratePlayer()
         {
-            var newPlayer = new Player()
-            {
-                Id = ObjectId.GenerateNewId(),
-                Name = "Some name",
-                Surname = "Some surname",
-                Nickname = "The poison",
-                HeightInCm = 199,
-                WeightInKg = 92,
-                BirthDate = new DateTime(1994, 11, 11),
-                PlayingPosition = "pg/sg",
-                positionLevel = 1
-            };
+            var newPlayer = PlayerFactory.GeneratePlayer();
 
             var res = _playerRepository.AddPlayer(newPlayer);
 
@@ -59,7 +48,7 @@ namespace EuroleagueManager.Api.Services
         public Player UpdatePlayerFields(string playerId, Player playerFields)
         {
             var playerObjId = new ObjectId(playerId);
-            var playerProjection = PlayerInsideTeamProjectionFactory.CreateObject(playerObjId, playerFields.Name, playerFields.Surname);
+            var playerProjection = PlayerFactory.CreateObject(playerObjId, playerFields.Name, playerFields.Surname);
             UpdatePlayerFieldsInTeams(playerObjId, playerProjection);
 
             var result = _playerRepository.UpdatePlayer(playerObjId, playerFields);

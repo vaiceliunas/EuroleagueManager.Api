@@ -23,13 +23,7 @@ namespace EuroleagueManager.Api.Services
         }
         public Team GenerateTeam()
         {
-            var team = new Team()
-            {
-                Id = ObjectId.GenerateNewId(),
-                Name = "RandomName",
-                City = "RandomCity",
-                Country = "RandomCountry"
-            };
+            var team = TeamFactory.GenerateTeam();
 
             var res = _teamRepository.InsertTeam(team);
 
@@ -56,7 +50,7 @@ namespace EuroleagueManager.Api.Services
             var playerObjId = new ObjectId(playerId);
             var teamObjId = new ObjectId(teamId);
             var player = _playerRepository.GetPlayer(playerObjId);
-            var playerProjection = PlayerInsideTeamProjectionFactory.CreateObject(player.Id, player.Name, player.Surname);
+            var playerProjection = PlayerFactory.CreateObject(player.Id, player.Name, player.Surname);
 
             var result = _teamRepository.AddPlayerToTeam(teamObjId, playerProjection);
             return result;
